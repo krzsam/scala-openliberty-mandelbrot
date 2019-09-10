@@ -3,7 +3,7 @@ Example Scala application to implement MicroProfile microservices
 
 ## Application Structure
 
-
+![Image](img/image-640-480.png)
 
 ## [Preparing Docker image](README-Docker.md)
 
