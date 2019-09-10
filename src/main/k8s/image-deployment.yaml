@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-depl
+  labels:
+    app: image-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: image-depl
+  template:
+    metadata:
+      labels:
+        app: image-depl
+    spec:
+      containers:
+        - name: image-depl
+          image: krzsam/examples:scala-openliberty-mandelbrot-0.1
+          ports:
+            - containerPort: 9080

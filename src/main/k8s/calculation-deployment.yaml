@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calculation-depl
+  labels:
+    app: calculation-depl
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: calculation-depl
+  template:
+    metadata:
+      labels:
+        app: calculation-depl
+    spec:
+      containers:
+        - name: calculation-depl
+          image: krzsam/examples:scala-openliberty-mandelbrot-0.1
+          ports:
+            - containerPort: 9080

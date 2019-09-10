@@ -1,4 +1,4 @@
-package mandelbrot
+package mandelbrot.system
 
 import java.awt.image.BufferedImage
 
@@ -11,15 +11,15 @@ import org.slf4j.{Logger, LoggerFactory}
 import scala.util.{Failure, Random, Success, Try}
 
 @RequestScoped
-@Path("/res")
-class SystemResource {
+@Path("/system")
+class SystemService {
   private val LOG: Logger = LoggerFactory.getLogger( this.getClass )
 
   @Path("/info")
   @GET
   @Produces(Array(MediaType.TEXT_PLAIN))
   @Counted(absolute = true, description = "Number of times info is requested")
-  def getInfo: Response = Response.ok("Version 1" ).build
+  def getInfo: Response = Response.ok("Mandelbrot Example Application using OpenLiberty Microservices" ).build
 
   @Path("/properties")
   @GET
@@ -28,13 +28,12 @@ class SystemResource {
   @Counted(absolute = true, description = "Number of times the JVM system properties are requested")
   def getProperties: Response = Response.ok(System.getProperties).build
 
-  @Path("/image")
+  @Path("/testimage")
   @GET
   @Produces(Array("image/png"))
   @Timed(name = "getImageTime", description = "Time needed to get image")
   @Counted(absolute = true, description = "Number of times image is requested")
   def getImage: Response = {
-    //val imageDataBuf = new ByteArrayOutputStream()
     val size = 320
     val img = new BufferedImage( size, size, BufferedImage.TYPE_INT_RGB )
 
