@@ -22,7 +22,7 @@ krzsam/examples                                scala-openliberty-mandelbrot-0.1 
 ...
 ```
 
-The below commands can be used to test the image and verify it was created correctly and the OpenLiberty server is starting up
+The below commands can be used to test the image and verify it was created correctly and the Open Liberty server is starting up
 and deploying the application.
 
 ```

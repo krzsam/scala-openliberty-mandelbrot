@@ -19,20 +19,21 @@ import scala.util.{Failure, Success, Try}
 class ImageService {
   private val LOG: Logger = LoggerFactory.getLogger( this.getClass )
 
-  val calculationService = "calculation-svc"
-  val calculationServicePort = 9080
+  // needs to match calculation service name as defined in calculation-service.yaml
+  private val calculationServiceHost = "calculation-svc"
+  private val calculationServicePort = 9080
 
-  val client = ClientBuilder.newClient()
+  private val client = ClientBuilder.newClient()
 
-  implicit val formats = DefaultFormats
+  implicit val formats: DefaultFormats.type = DefaultFormats
 
   @Path("/info")
   @GET
   @Produces(Array(MediaType.TEXT_PLAIN))
   def getInfo: Response = Response.ok("This is Image Generation Service" ).build
 
-  def invokeCalculationService(data: DataPoint, img: BufferedImage, initialIterations: Int ) = {
-    val queryString=s"http://${calculationService}:${calculationServicePort}/mandelbrot/iteration/iterate?" +
+  def invokeCalculationService(data: DataPoint, img: BufferedImage, initialIterations: Int ): Unit = {
+    val queryString=s"http://${calculationServiceHost}:${calculationServicePort}/mandelbrot/iteration/iterate?" +
       s"posx=${data.posX}&posy=${data.posY}&datax=${data.c.getReal}&datay=${data.c.getImaginary}&iterations=${data.iterations}"
 
     val response: Response = client.target( queryString ).request().get()
@@ -69,10 +70,10 @@ class ImageService {
     val topLeft = new Complex( topLeftX, topLeftY )
 
     val rangeY = 0 until stepsY
-    rangeY.foreach((itemY) => {
+    rangeY.foreach( itemY => {
       val rangeX = 0 until stepsX
       rangeX.foreach(
-        (itemX) => {
+        itemX => {
           val z0 = topLeft.add( new Complex(stepRe * itemX, -stepIm * itemY) )
           val data = DataPoint(itemX, itemY, z0, iterations )
           invokeCalculationService( data, img, iterations )
