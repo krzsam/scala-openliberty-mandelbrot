@@ -1,38 +1,40 @@
-
-#### */config* directory
-
-The contents of the directory are result of reverse-engineering of contents of the resulting Docker image as created by an example project
-[GitHub: guide-getting-started](https://github.com/OpenLiberty/guide-getting-started)
-
-* /config/apps
-* /config/dropins
-* /config/workarea
-* /config/bootstrap.properties
-* /src/main/resources/key.p12 - taken when generated in running Docker container
-* /src/main/resources/ltpa.keys - taken when generated in running Docker container
-
 ## Preparing Docker image
 
-start your local Docker machine
+To prepare Docker image, Docker runtime needs to be installed and available on the development machine.
+For the purpose of this application, [Docker Toolbox](https://docs.docker.com/toolbox/overview/) was used.
 
-run 
+To create an image,  the below commands need to be invoked in Sbt (via the Sbt Console for example). The structure of the Docker image being
+created is defined in *build.sbt* file and uses *sbt-docker* plugin for this purpose.
 ```
 sbt> package
+...
+
 sbt> docker
+...
 ```
 
+The above will create an image in the local Docker repository:
 
 ```
-docker exec -it 713912a6e13d /bin/bash
-
-docker run --name mandelbrot-app -d -p 9080:9080 -p 9443:9443 krzsam/examples:scala-openliberty-mandelbrot-0.1
-docker container logs -f mandelbrot-app 
-docker container stop mandelbrot-app && docker container rm mandelbrot-app
+$ docker image ls
+REPOSITORY                                     TAG                                 IMAGE ID            CREATED             SIZE
+krzsam/examples                                scala-openliberty-mandelbrot-0.1    ba14846fd283        2 hours ago         476MB
+...
 ```
 
-logs: target/liberty/wlp/usr/servers/GettingStartedServer/logs
+The below commands can be used to test the image and verify it was created correctly and the OpenLiberty server is starting up
+and deploying the application.
 
-Testing services
+```
+$ docker run --name mandelbrot-app -d -p 9080:9080 -p 9443:9443 krzsam/examples:scala-openliberty-mandelbrot-0.1
+
+$ docker container logs -f mandelbrot-app
+ 
+$ docker container stop mandelbrot-app && docker container rm mandelbrot-app
+```
+
+The application deployment can be verified using the below commands
+
 ```
 $ curl 192.168.99.100:9080/mandelbrot/system/info
 Mandelbrot Example Application using Open Liberty Microservices
@@ -48,16 +50,11 @@ $ curl "192.168.99.100:9080/mandelbrot/iteration/iterate?posx=1&posy=2&datax=0.5
 
 $ curl "192.168.99.100:9080/mandelbrot/iteration/iterate?posx=1&posy=2&datax=0.1&datay=0.1&iterations=256"
 {"posX":1,"posY":2,"c":{"real":0.09362728698078197,"imaginary":0.12303975734127459},"iterations":0}
-
-curl 192.168.99.100:9080/mandelbrot/iteration/iterate?iterations=100
-```
-
-```
-C:\Users\Krzysiek>docker cp 196af7c5d7f9:/opt/ol/wlp/output/defaultServer/resources/security/key.p12 .
-C:\Users\Krzysiek>docker cp 196af7c5d7f9:/opt/ol/wlp/output/defaultServer/resources/security/ltpa.keys .
 ```
 
 #### Push image to Docker repository
+
+Once the image is verified, it can be pushed to the main DockerHub repository.
 
 ```
 $ docker login

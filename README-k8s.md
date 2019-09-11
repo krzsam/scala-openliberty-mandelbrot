@@ -1,6 +1,10 @@
-# Deploying Calculation Service
+## Deploying Docker image on Kubernetes
+
+### Deploying Calculation Service
 
 #### Creating Deployment
+
+To create the deployment and verify the application was deployed:
 ```
 $ kubectl apply -f ./calculation-deployment.yaml
 deployment.apps/calculation-depl created
@@ -23,6 +27,8 @@ $ curl "10.44.0.2:9080/mandelbrot/iteration/iterate?posx=1&posy=2&datax=0.1&data
 ```
 
 #### Creating Service
+
+To expose the deployment as a service and verify it:
 ```
 $ kubectl apply -f ./calculation-service.yaml
 service/calculation-svc created
@@ -39,10 +45,11 @@ $ curl "10.106.77.222:9080/mandelbrot/iteration/iterate?posx=1&posy=2&datax=0.1&
 {"posX":1,"posY":2,"c":{"real":0.09362728698078197,"imaginary":0.12303975734127459},"iterations":0}
 ```
 
-# Deploying Image Generation Service
+### Deploying Image Generation Service
 
 #### Creating Deployment
 
+To create the deployment and verify the application was deployed:
 ```
 $ kubectl apply -f ./image-deployment.yaml
 deployment.apps/image-depl created
@@ -65,6 +72,7 @@ This is Image Generation Service
 
 #### Creating Service
 
+To expose the deployment as a service and verify it:
 ```
 $ kubectl apply -f ./image-service.yaml
 service/image-svc created
@@ -92,6 +100,9 @@ $ curl "10.107.99.121:9080/mandelbrot/image/generate?tlx=-2.2&tly=1.2&brx=1.0&br
 100 34875    0 34875    0     0     94      0 --:--:--  0:06:09 --:--:-- 10227
 ```
 
-kubectl delete service/calculation-svc && kubectl delete deployment/calculation-depl && kubectl delete service/image-svc && kubectl delete deployment/image-depl
+#### Removing services and deployments
 
-docker pull krzsam/examples:scala-openliberty-mandelbrot-0.1
+If necessary, all created deployments and services can be removed using the below command:
+```
+kubectl delete service/calculation-svc && kubectl delete deployment/calculation-depl && kubectl delete service/image-svc && kubectl delete deployment/image-depl
+```
