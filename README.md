@@ -46,7 +46,7 @@ The application is divided logically into two microservices, which share the sam
 ## Links
 * [OpenLiberty](https://openliberty.io/)
 * [Microprofile Specification](https://microprofile.io/)
-* [sbt-docker](https://github.com/marcuslonnberg/sbt-docker)]
+* [sbt-docker](https://github.com/marcuslonnberg/sbt-docker)
 * [xsbt-web-plugin](https://github.com/earldouglas/xsbt-web-plugin)
 * [GitHub: OpenLiberty/guide-getting-started](https://github.com/OpenLiberty/guide-getting-started)
 * [Docker Toolbox](https://docs.docker.com/toolbox/overview/)
