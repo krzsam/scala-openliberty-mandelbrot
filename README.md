@@ -4,6 +4,8 @@ An example application to calculate a [Mandelbrot Set](https://en.wikipedia.org/
 The goal is demonstrate implementation and Kubernetes deployment. The solution is not intended to be optimal in terms of choice of technologies or performance. 
 Some places are left unoptimised in terms of performance for the benefit of clarity of presentation.
 
+## [Preparing Docker image](README-Docker.md)
+## [Deploying Docker image on Kubernetes](README-k8s.md)
 ## Application Architecture
 
 The application is divided logically into two microservices, which share the same codebase for the purpose of ease of the implementation.
@@ -41,8 +43,6 @@ The application is divided logically into two microservices, which share the sam
 
 ![Image](img/image-640-480.png)
 
-## [Preparing Docker image](README-Docker.md)
-## [Deploying Docker image on Kubernetes](README-k8s.md)
 ## Links
 * [OpenLiberty](https://openliberty.io/)
 * [Microprofile Specification](https://microprofile.io/)
