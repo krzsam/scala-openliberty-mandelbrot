@@ -1,5 +1,4 @@
 # scala-openliberty-mandelbrot
-Example Scala application to implement MicroProfile microservices
 An example application to calculate a [Mandelbrot Set](https://en.wikipedia.org/wiki/Mandelbrot_set) using Microprofile/Open Liberty implementation of microservices. 
 The goal is demonstrate implementation and Kubernetes deployment. The solution is not intended to be optimal in terms of choice of technologies or performance. 
 Some places are left unoptimised in terms of performance for the benefit of clarity of presentation.
