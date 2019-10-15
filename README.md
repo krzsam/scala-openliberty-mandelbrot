@@ -1,6 +1,7 @@
 # scala-openliberty-mandelbrot
-An example application to calculate a [Mandelbrot Set](https://en.wikipedia.org/wiki/Mandelbrot_set) using Microprofile/Open Liberty implementation of microservices. 
-The goal is demonstrate implementation and Kubernetes deployment. The solution is not intended to be optimal in terms of choice of technologies or performance. 
+An example application to calculate a [Mandelbrot Set](https://en.wikipedia.org/wiki/Mandelbrot_set) using Microprofile/Open Liberty microservices implemented in Scala. 
+The goal is to demonstrate technical possibility of using OpenLiberty with Scala and possibility of deploying such solution as Kubernetes services. 
+The solution is not intended to be optimal in terms of choice of technologies or performance. 
 Some places are left unoptimised in terms of performance for the benefit of clarity of presentation.
 
 ## [Preparing Docker image](README-Docker.md)
