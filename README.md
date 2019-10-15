@@ -57,6 +57,6 @@ The application is divided logically into two microservices, which share the sam
 ## Infrastructure
 * Amazon Web Services (AWS)
     * 3 nodes : *t2.small* , OS: Debian Stretch 9.11
-* Open Liberty version 19.0.0.8
+* Open Liberty version 19.0.0.10
 * Docker version 19.03.2
 * Kubernetes version v1.15.0

@@ -8,23 +8,18 @@ libraryDependencies += "org.slf4j"               % "slf4j-api"     % "1.7.25"
 libraryDependencies += "org.slf4j"               % "slf4j-log4j12" % "1.7.26"
 libraryDependencies += "org.apache.commons"      % "commons-math3" % "3.6.1"
 libraryDependencies += "net.liftweb"             %% "lift-json"    % "3.3.0"
-libraryDependencies += "io.openliberty.features" % "cdi-2.0"       % "19.0.0.8"  % "provided"
-libraryDependencies += "io.openliberty.features" % "jsonp-1.1"     % "19.0.0.8"  % "provided"
-libraryDependencies += "io.openliberty.features" % "mpMetrics-2.0" % "19.0.0.8"  % "provided"
-libraryDependencies += "io.openliberty.features" % "mpHealth-2.0"  % "19.0.0.8"  % "provided"
+libraryDependencies += "io.openliberty.features" % "cdi-2.0"       % "19.0.0.10"  % "provided"
+libraryDependencies += "io.openliberty.features" % "jsonp-1.1"     % "19.0.0.10"  % "provided"
+libraryDependencies += "io.openliberty.features" % "mpMetrics-2.0" % "19.0.0.10"  % "provided"
+libraryDependencies += "io.openliberty.features" % "mpHealth-2.0"  % "19.0.0.10"  % "provided"
 
 // https://github.com/sbt/sbt/issues/3618 describes fix to download javax.ws.rs-api correctly, as below
-//libraryDependencies += "javax.ws.rs"             % "javax.ws.rs-api" % "2.1.1"   % "provided" artifacts( Artifact("javax.ws.rs-api", "jar", "jar"))
-libraryDependencies += "jakarta.ws.rs"           % "jakarta.ws.rs-api" % "2.1.5"     % "provided"
-libraryDependencies += "io.openliberty.features" % "jaxrs-2.1"         % "19.0.0.8"  % "provided" exclude("javax.ws.rs", "javax.ws.rs-api")
-libraryDependencies += "io.openliberty.features" % "mpRestClient-1.3"  % "19.0.0.8"  % "provided" exclude("javax.ws.rs", "javax.ws.rs-api")
-libraryDependencies += "io.openliberty.features" % "mpOpenAPI-1.1"     % "19.0.0.8"  % "provided" exclude("javax.ws.rs", "javax.ws.rs-api")
+libraryDependencies += "jakarta.ws.rs"           % "jakarta.ws.rs-api" % "2.1.5"      % "provided"
+libraryDependencies += "io.openliberty.features" % "jaxrs-2.1"         % "19.0.0.10"  % "provided" exclude("javax.ws.rs", "javax.ws.rs-api")
+libraryDependencies += "io.openliberty.features" % "mpRestClient-1.3"  % "19.0.0.10"  % "provided" exclude("javax.ws.rs", "javax.ws.rs-api")
+libraryDependencies += "io.openliberty.features" % "mpOpenAPI-1.1"     % "19.0.0.10"  % "provided" exclude("javax.ws.rs", "javax.ws.rs-api")
 
-libraryDependencies += "org.scalatest"           %% "scalatest"        % "3.0.8"     % "test"
-
-// for sbt-assembly
-//resolvers += Resolver.url("https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/").
-//  withPatterns( Patterns( "https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.eed3si9n/[module]/scala_2.12/sbt_1.0/[revision]/ivys/ivy.xml" ) )
+libraryDependencies += "org.scalatest"           %% "scalatest"        % "3.0.8"      % "test"
 
 enablePlugins(DockerPlugin,JettyPlugin)
 
@@ -55,4 +50,3 @@ imageNames in docker := Seq(
     tag = Some( s"${name.value}-${version.value}")
   )
 )
-

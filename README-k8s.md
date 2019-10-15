@@ -19,6 +19,22 @@ calculation-depl-599c7f898-5cqh7   1/1     Running   0          2m57s   10.36.0.
 calculation-depl-599c7f898-7v8cg   1/1     Running   0          2m57s   10.44.0.1   ip-172-31-23-111   <none>           <none>
 calculation-depl-599c7f898-9x8j5   1/1     Running   0          2m57s   10.44.0.2   ip-172-31-23-111   <none>           <none>
 
+
+$ kubectl logs calculation-depl-599c7f898-5cqh7
+...
+[AUDIT   ] CWWKF0011I: The defaultServer server is ready to run a smarter planet. The defaultServer server started in 92.411 seconds.
+[AUDIT   ] CWWKZ0001I: Application scala-openliberty-mandelbrot_2.12-0.1 started in 43.298 seconds.
+
+$ kubectl logs calculation-depl-599c7f898-7v8cg
+...
+[AUDIT   ] CWWKF0011I: The defaultServer server is ready to run a smarter planet. The defaultServer server started in 98.972 seconds.
+[AUDIT   ] CWWKZ0001I: Application scala-openliberty-mandelbrot_2.12-0.1 started in 58.127 seconds.
+
+$ kubectl logs calculation-depl-599c7f898-9x8j5
+...
+[AUDIT   ] CWWKZ0001I: Application scala-openliberty-mandelbrot_2.12-0.1 started in 29.948 seconds.
+[AUDIT   ] CWWKF0011I: The defaultServer server is ready to run a smarter planet. The defaultServer server started in 48.519 seconds.
+
 $ curl 10.36.0.1:9080/mandelbrot/iteration/info
 This is Iteration Service
 
@@ -65,6 +81,11 @@ calculation-depl-599c7f898-5cqh7   1/1     Running   0          31m   10.36.0.1 
 calculation-depl-599c7f898-7v8cg   1/1     Running   0          31m   10.44.0.1   ip-172-31-23-111   <none>           <none>
 calculation-depl-599c7f898-9x8j5   1/1     Running   0          31m   10.44.0.2   ip-172-31-23-111   <none>           <none>
 image-depl-849874f46-5sssg         1/1     Running   0          38s   10.36.0.2   ip-172-31-27-88    <none>           <none>
+
+$ kubectl logs image-depl-849874f46-5sssg
+...
+[AUDIT   ] CWWKF0011I: The defaultServer server is ready to run a smarter planet. The defaultServer server started in 47.964 seconds.
+[AUDIT   ] CWWKZ0001I: Application scala-openliberty-mandelbrot_2.12-0.1 started in 31.711 seconds.
 
 $ curl 10.36.0.2:9080/mandelbrot/image/info
 This is Image Generation Service
